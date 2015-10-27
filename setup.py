@@ -12,7 +12,7 @@ except ImportError:
 
 DISTNAME = "cornel-movie-dialogs-corpus-storm"
 DESCRIPTION = "A set of python modules for cornel movie-dialogs corpus with storm"
-with open("README.md") as f:
+with open("README.rst") as f:
     LONG_DESCRIPTION = f.read()
 AUTHOR = "Sosuke Kato"
 AUTHOR_EMAIL = "snoopies.drum@gmail.com"
