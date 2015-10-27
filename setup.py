@@ -18,7 +18,6 @@ AUTHOR = "Sosuke Kato"
 AUTHOR_EMAIL = "snoopies.drum@gmail.com"
 URL = "https://github.com/sosuke-k/cornel-movie-dialogs-corpus-storm"
 LICENSE = "MIT"
-# PY_MODULES = ["mdcorpus"]
 PACKAGES = ["mdcorpus"]
 PACKAGE_DIR = {"mdcorpus": "mdcorpus"}
 
@@ -35,7 +34,6 @@ def setup_package():
                     url=URL,
                     version=VERSION,
                     long_description=LONG_DESCRIPTION,
-                    # py_modules=PY_MODULES,
                     packages=PACKAGES,
                     package_dir=PACKAGE_DIR,
                     )
