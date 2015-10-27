@@ -14,7 +14,9 @@ DISTNAME = "cornel-movie-dialogs-corpus-storm"
 DESCRIPTION = "A set of python modules for cornel movie-dialogs corpus with storm"
 with open("README.md") as f:
     LONG_DESCRIPTION = f.read()
-URL = "http://sosuke-k.github.io/mdcorpus"
+AUTHOR = "Sosuke Kato"
+AUTHOR_EMAIL = "snoopies.drum@gmail.com"
+URL = "https://github.com/sosuke-k/cornel-movie-dialogs-corpus-storm"
 LICENSE = "MIT"
 # PY_MODULES = ["mdcorpus"]
 PACKAGES = ["mdcorpus"]
@@ -27,6 +29,8 @@ VERSION = mdcorpus.__version__
 def setup_package():
     metadata = dict(name=DISTNAME,
                     description=DESCRIPTION,
+                    author=AUTHOR,
+                    author_email=AUTHOR_EMAIL,
                     license=LICENSE,
                     url=URL,
                     version=VERSION,
