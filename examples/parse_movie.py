@@ -7,7 +7,7 @@ from mdcorpus.parser import *
 
 parser = Parser()
 
-f = open("sample.txt")
+f = open("sample_movie_titles_metadata.txt")
 line = f.readline()
 while line:
     print "=== parse this line ==="
