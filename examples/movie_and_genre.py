@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from storm.locals import *
-from mdcorpus.mdcorpus import *
+from mdcorpus.orm import *
 
 
 database = create_database("sqlite:")

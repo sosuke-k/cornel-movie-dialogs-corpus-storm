@@ -1,11 +1,11 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-__version__ = "0.0.2"
-__all__ = ["mdcorpus", "parser"]
+__version__ = "0.0.3"
+__all__ = ["orm", "parser"]
 
 from storm.locals import *
-from mdcorpus import *
+from orm import *
 
 # initializing the relationships
 MovieTitlesMetadata.genres = ReferenceSet(MovieTitlesMetadata.id,

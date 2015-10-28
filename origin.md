@@ -15,7 +15,7 @@ pip install cornel-movie-dialogs-corpus-storm
 ## Usage
 
 ```
-from mdcorpus.mdcorpus import *
+from mdcorpus.orm import *
 from mdcorpus.parser import *
 
 ...

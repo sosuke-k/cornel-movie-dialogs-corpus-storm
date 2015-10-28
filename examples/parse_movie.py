@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from storm.locals import *
-from mdcorpus.mdcorpus import *
+from mdcorpus.orm import *
 from mdcorpus.parser import *
 
 parser = Parser()
