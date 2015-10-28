@@ -27,6 +27,7 @@ from mdcorpus.parser import *
 * MovieTitlesMetadata
 * Genre
 * MovieGenreLine
+* MovieCharactersMetadata
 
 ## Corpus Problem
 

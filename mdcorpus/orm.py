@@ -40,3 +40,25 @@ class MovieGenreLine(object):
         " (movie_id INTEGER, genre_id INTEGER, PRIMARY KEY (movie_id, genre_id))"
     movie_id = Int()
     genre_id = Int()
+
+
+class MovieCharactersMetadata(object):
+    __storm_table__ = "movie_characters_metadata"
+    CREATE_SQL = "CREATE TABLE " + __storm_table__ + \
+        " (id INTEGER PRIMARY KEY, name VARCHAR, movie_id INTEGER, gender_idx INTEGER, position INTEGER)"
+    GENDER = ["m", "f", "?"]
+    id = Int(primary=True)
+    name = Unicode()
+    movie_id = Int()
+    movie = Reference(movie_id, MovieTitlesMetadata.id)
+    gender_idx = Int()
+    position = Int()
+
+    def __init__(self, id, name, gender, position):
+        self.id = id
+        self.name = name.decode("utf-8")
+        self.gender_idx = self.GENDER.index(gender)
+        self.position = position if isinstance(position, int) else 0
+
+    def gender(self):
+        return self.GENDER[self.gender_idx]

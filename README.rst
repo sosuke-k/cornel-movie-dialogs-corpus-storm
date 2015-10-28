@@ -35,6 +35,7 @@ Class List
 -  MovieTitlesMetadata
 -  Genre
 -  MovieGenreLine
+-  MovieCharactersMetadata
 
 Corpus Problem
 --------------

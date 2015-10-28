@@ -22,3 +22,14 @@ class Parser:
             if genre_name != "":
                 genres.add(genre_name[1:-1])
         return [id, title, year, rating, votes, genres]
+
+    def movie_characters_metadata(self, line):
+        metadata = line.split(self.separator)
+        id = int(metadata[0][1:])                   # e.g. u0
+        name = metadata[1]                          # e.g. BIANCA
+        movie_id = int(metadata[2][1:])             # e.g. m0
+        movie_title = metadata[3]                   # e.g. 10 things i hate about you
+        gender = metadata[4]                        # e.g. f
+        position = metadata[5][0:-1]                # e.g. 4
+        position = int(position) if position != "?" else position
+        return [id, name, movie_id, movie_title, gender, position]

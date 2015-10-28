@@ -17,3 +17,6 @@ Genre.movies = ReferenceSet(Genre.id,
                             MovieGenreLine.genre_id,
                             MovieGenreLine.movie_id,
                             MovieTitlesMetadata.id)
+
+MovieTitlesMetadata.characters = ReferenceSet(
+    MovieTitlesMetadata.id, MovieCharactersMetadata.movie_id)
