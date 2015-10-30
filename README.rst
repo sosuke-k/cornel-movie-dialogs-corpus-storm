@@ -36,6 +36,9 @@ Class List
 -  Genre
 -  MovieGenreLine
 -  MovieCharactersMetadata
+-  MovieConversation
+-  MovieLine
+-  RawScriptUrl
 
 Corpus Problem
 --------------

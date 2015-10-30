@@ -28,6 +28,9 @@ from mdcorpus.parser import *
 * Genre
 * MovieGenreLine
 * MovieCharactersMetadata
+* MovieConversation
+* MovieLine
+* RawScriptUrl
 
 ## Corpus Problem
 
