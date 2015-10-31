@@ -12,6 +12,17 @@ pip install storm                # if you not
 pip install cornel-movie-dialogs-corpus-storm
 ```
 
+## Setup
+
+1. download corpus and unzip
+2. generate database and insert with `generate-mdcorpus-database.py`
+
+for example:
+
+```
+generate-mdcorpus-database.py --corpus-dir "cornell movie-dialogs corpus" corpus.db
+```
+
 ## Usage
 
 ```
