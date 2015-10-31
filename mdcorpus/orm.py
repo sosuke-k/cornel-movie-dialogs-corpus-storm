@@ -64,7 +64,7 @@ class MovieCharactersMetadata(object):
     def __init__(self, id, name, gender, position):
         self.id = id
         self.name = name.decode("utf-8")
-        self.gender_idx = self.GENDER.index(gender)
+        self.gender_idx = self.GENDER.index(gender.lower())
         self.position = position if isinstance(position, int) else 0
 
     def gender(self):
