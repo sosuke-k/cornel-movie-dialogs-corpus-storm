@@ -20,6 +20,7 @@ URL = "https://github.com/sosuke-k/cornel-movie-dialogs-corpus-storm"
 LICENSE = "MIT"
 PACKAGES = ["mdcorpus"]
 PACKAGE_DIR = {"mdcorpus": "mdcorpus"}
+SCRIPTS = ["scripts/generate-mdcorpus-database.py"]
 
 import mdcorpus
 VERSION = mdcorpus.__version__
@@ -36,6 +37,7 @@ def setup_package():
                     long_description=LONG_DESCRIPTION,
                     packages=PACKAGES,
                     package_dir=PACKAGE_DIR,
+                    scripts=SCRIPTS,
                     )
 
     setup(**metadata)
