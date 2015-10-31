@@ -17,9 +17,9 @@ FILES = ["movie_titles_metadata",
 
 
 def generate(corpus_dir, dtype="sqlite", dpath="corpus.db"):
-    # print "created " + dpath
-    # database = create_database(dtype + ":" + dpath)
-    database = create_database(dtype + ":")
+    print "created " + dpath
+    database = create_database(dtype + ":" + dpath)
+    # database = create_database(dtype + ":")
     store = Store(database)
     store.execute(MovieTitlesMetadata.CREATE_SQL)
     store.execute(Genre.CREATE_SQL)
@@ -44,7 +44,7 @@ def generate(corpus_dir, dtype="sqlite", dpath="corpus.db"):
             line = f.readline()
         for genre in genre_set:
             store.add(Genre(genre))
-        store.flush()
+        store.commit()
 
     # insert movies
     with open(os.path.join(corpus_dir, "movie_titles_metadata.txt"), "r") as f:
@@ -57,7 +57,7 @@ def generate(corpus_dir, dtype="sqlite", dpath="corpus.db"):
                 genre = store.find(Genre, Genre.name == genre_name.decode('utf-8')).one()
                 movie.genres.add(genre)
             line = f.readline()
-        store.flush()
+        store.commit()
 
     # insert characters
     with open(os.path.join(corpus_dir, "movie_characters_metadata.txt"), "r") as f:
@@ -68,7 +68,20 @@ def generate(corpus_dir, dtype="sqlite", dpath="corpus.db"):
             character = store.add(MovieCharactersMetadata(data[0], data[1], data[-2], data[-1]))
             character.movie_id = movie_id
             line = f.readline()
-        store.flush()
+        store.commit()
+
+    # # insert lines
+    with open(os.path.join(corpus_dir, "movie_lines.txt"), "r") as f:
+        line = f.readline()
+        counter = 1
+        while line:
+            data = parser.movie_lines(line)
+            print counter
+            store.add(MovieLine(data[0], data[-1]))
+            # store.commit()
+            line = f.readline()
+            counter += 1
+        store.commit()
 
     store.commit()
 
@@ -86,6 +99,11 @@ def generate(corpus_dir, dtype="sqlite", dpath="corpus.db"):
         print "all characters inserted"
     else:
         print "something wrong with MovieCharactersMetadata"
+    lines = store.find(MovieLine)
+    if lines.count() == 304713:
+        print "all lines inserted"
+    else:
+        print "something wrong with MovieLine"
 
 
 def main():
