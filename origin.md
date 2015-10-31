@@ -40,7 +40,19 @@ This is memo when I dealt with corpus problems.
 
 * I ignored an **alphabet** following year.
     * for example, line 34, `1989/I`
-* I adjust title data for **Acute accent** manually.
-    * line 115, `léon`
 * I ignored **duplication** for genre data.
     * line 58, `['horror', 'mystery', 'mystery', 'sci-fi', 'sci-fi']`
+
+## Code Problem
+
+I use `Python2.7` and I don't know how to use `codecs` module.([Unicode HOWTO — Python 2.7ja1 documentation](http://docs.python.jp/2/howto/unicode.html))
+
+### movie_titles_metadata.txt
+
+* I adjust title data for **Acute accent** manually.
+    * line 115, `léon`
+
+### movie_characters_metadata.txt
+
+* I adjust title data for **Acute accent** manually.
+    * line 1727 - 1736, `léon`

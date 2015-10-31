@@ -31,7 +31,7 @@ def generate(corpus_dir, dtype="sqlite", dpath="corpus.db"):
 
     parser = Parser()
 
-    # insert all genres
+    # insert genres
     with open(os.path.join(corpus_dir, "movie_titles_metadata.txt"), "r") as f:
         genre_set = Set([])
         line = f.readline()
@@ -46,7 +46,7 @@ def generate(corpus_dir, dtype="sqlite", dpath="corpus.db"):
             store.add(Genre(genre))
         store.flush()
 
-    # insert all movies
+    # insert movies
     with open(os.path.join(corpus_dir, "movie_titles_metadata.txt"), "r") as f:
         line = f.readline()
         while line:
@@ -56,6 +56,17 @@ def generate(corpus_dir, dtype="sqlite", dpath="corpus.db"):
             for genre_name in genres:
                 genre = store.find(Genre, Genre.name == genre_name.decode('utf-8')).one()
                 movie.genres.add(genre)
+            line = f.readline()
+        store.flush()
+
+    # insert characters
+    with open(os.path.join(corpus_dir, "movie_characters_metadata.txt"), "r") as f:
+        line = f.readline()
+        while line:
+            data = parser.movie_characters_metadata(line)
+            movie_id = data[2]
+            character = store.add(MovieCharactersMetadata(data[0], data[1], data[-2], data[-1]))
+            character.movie_id = movie_id
             line = f.readline()
         store.flush()
 
@@ -70,6 +81,11 @@ def generate(corpus_dir, dtype="sqlite", dpath="corpus.db"):
         print "all movies inserted"
     else:
         print "something wrong with MovieTitlesMetadata"
+    characters = store.find(MovieCharactersMetadata)
+    if characters.count() == 9035:
+        print "all characters inserted"
+    else:
+        print "something wrong with MovieCharactersMetadata"
 
 
 def main():
