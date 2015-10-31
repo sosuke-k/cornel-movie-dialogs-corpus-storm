@@ -47,12 +47,48 @@ This is memo when I dealt with corpus problems.
 
 I use `Python2.7` and I don't know how to use `codecs` module.([Unicode HOWTO — Python 2.7ja1 documentation](http://docs.python.jp/2/howto/unicode.html))
 
+### mime
+
+convert text-code to `utf-8` with [Mi](http://www.mimikaki.net/)
+
+#### before
+
+```
+cornell movie-dialogs corpus$ file --mime {(ls)}
+README.txt:                    text/plain; charset=iso-8859-1
+chameleons.pdf:                application/pdf; charset=binary
+movie_characters_metadata.txt: text/plain; charset=iso-8859-1
+movie_conversations.txt:       text/plain; charset=us-ascii
+movie_lines.txt:               text/plain; charset=us-ascii
+movie_titles_metadata.txt:     text/plain; charset=iso-8859-1
+raw_script_urls.txt:           text/plain; charset=iso-8859-1
+```
+
+#### after
+
+```
+cornell movie-dialogs corpus$ file --mime {(ls)}
+README.txt:                    text/plain; charset=utf-8
+chameleons.pdf:                application/pdf; charset=binary
+movie_characters_metadata.txt: text/plain; charset=utf-8
+movie_conversations.txt:       text/plain; charset=us-ascii
+movie_lines.txt:               text/plain; charset=us-ascii
+movie_titles_metadata.txt:     text/plain; charset=utf-8
+raw_script_urls.txt:           text/plain; charset=utf-8
+```
+
 ### movie_titles_metadata.txt
 
-* I adjust title data for **Acute accent** manually.
-    * line 115, `léon`
+* line 115, `léon`
 
 ### movie_characters_metadata.txt
 
-* I adjust title data for **Acute accent** manually.
-    * line 1727 - 1736, `léon`
+* line 1727 - 1736, `léon`
+
+### result
+
+```
+sqlite> select * from movie_titles_metadata where title = 'léon';
+sqlite> select * from movie_titles_metadata where title = 'l駮n';
+114|l駮n|1994|8.6|204901
+```
