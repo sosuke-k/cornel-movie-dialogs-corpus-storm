@@ -17,7 +17,9 @@ FILES = ["movie_titles_metadata",
 
 
 def generate(corpus_dir, dtype="sqlite", dpath="corpus.db"):
-    database = create_database(dtype + ":" + dpath)
+    # print "created " + dpath
+    # database = create_database(dtype + ":" + dpath)
+    database = create_database(dtype + ":")
     store = Store(database)
     store.execute(MovieTitlesMetadata.CREATE_SQL)
     store.execute(Genre.CREATE_SQL)
@@ -29,15 +31,45 @@ def generate(corpus_dir, dtype="sqlite", dpath="corpus.db"):
 
     parser = Parser()
 
-    for file_name in FILES:
-        parse_func = getattr(parser, file_name, None)
-        with open(os.path.join(corpus_dirfile_name, file_name + ".txt"), "r") as f:
+    # insert all genres
+    with open(os.path.join(corpus_dir, "movie_titles_metadata.txt"), "r") as f:
+        genre_set = Set([])
+        line = f.readline()
+        while line:
+            data = parser.movie_titles_metadata(line)
+            genres = data.pop()
+            for genre in genres:
+                if genre != '':
+                    genre_set.add(genre)
             line = f.readline()
-            while line:
-                print line
-                l = parse_func(line)
-                print l
-                line = f.readline()
+        for genre in genre_set:
+            store.add(Genre(genre))
+        store.flush()
+
+    # insert all movies
+    with open(os.path.join(corpus_dir, "movie_titles_metadata.txt"), "r") as f:
+        line = f.readline()
+        while line:
+            data = parser.movie_titles_metadata(line)
+            genres = data.pop()
+            movie = store.add(MovieTitlesMetadata(*data))
+            for genre_name in genres:
+                genre = store.find(Genre, Genre.name == genre_name.decode('utf-8')).one()
+                movie.genres.add(genre)
+            line = f.readline()
+        store.flush()
+
+    store.commit()
+
+    # check
+    # - 220,579 conversational exchanges between 10,292 pairs of movie characters
+    # - involves 9,035 characters from 617 movies
+    # - in total 304,713 utterances
+    movies = store.find(MovieTitlesMetadata)
+    if movies.count() == 617:
+        print "all movies inserted"
+    else:
+        print "something wrong with MovieTitlesMetadata"
 
 
 def main():
@@ -50,7 +82,7 @@ def main():
     parser.add_argument("--corpus-dir", type=str, required=True)
     args = parser.parse_args()
 
-    print args.__dict__         # 'dtype': 'sqlite', 'dpath': ['database.db']}
+    generate(args.corpus_dir, dtype=args.dtype, dpath=args.dpath[0])
 
 if __name__ == "__main__":
     main()
