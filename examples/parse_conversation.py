@@ -12,7 +12,7 @@ line = f.readline()
 while line:
     print "=== parse this line ==="
     print line
-    list = parser.movie_conversation(line)
+    list = parser.movie_conversations(line)
     line_id_list = list.pop()
     conversation = MovieConversation(*list)
     print "This conversation is between people whose ids are " + str(conversation.first_character_id) + " and " + str(conversation.second_character_id)

@@ -12,7 +12,7 @@ line = f.readline()
 while line:
     print "=== parse this line ==="
     print line
-    list = parser.movie_line(line)
+    list = parser.movie_lines(line)
     line = MovieLine(list[0], list[-1])
     print "the utterance of line(" + str(line.id) + "):"
     print "'" + line.text + "'"

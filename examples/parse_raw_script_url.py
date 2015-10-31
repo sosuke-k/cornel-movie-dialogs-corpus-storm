@@ -12,7 +12,7 @@ line = f.readline()
 while line:
     print "=== parse this line ==="
     print line
-    list = parser.raw_script_url(line)
+    list = parser.raw_script_urls(line)
     script_url = RawScriptUrl(list[-1])
     print script_url.url
     print ""
