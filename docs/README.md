@@ -1,4 +1,4 @@
-# [cornel-movie-dialogs-corpus-storm](https://pypi.python.org/pypi/cornel-movie-dialogs-corpus-storm) documentation
+# documentation
 
 See [here](http://sosuke-k.github.io/cornel-movie-dialogs-corpus-storm/).
 But now, under construction...<(_ _)>
