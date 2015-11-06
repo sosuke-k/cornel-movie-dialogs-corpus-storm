@@ -1,0 +1,26 @@
+{
+  "name": "cornel-movie-dialogs-corpus-storm",
+  "version": "0.1.1",
+  "description": "A set of python modules for cornel movie-dialogs corpus with storm.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npm/npm.git"
+  },
+  "readme": "README.md",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "sosuke-k",
+    "email": "snoopies.drum@gmail.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-gh-pages": "^0.5.4"
+  }
+}
